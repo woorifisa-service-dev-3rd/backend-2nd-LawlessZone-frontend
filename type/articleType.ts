@@ -4,3 +4,16 @@ interface IArticleData {
   title: string;
   content: string;
 }
+
+interface IArticlePost {
+  memberId: number;
+  title: string;
+  content: string;
+  viewCount: number;
+}
+
+interface IParams {
+  params: {
+    articleId: string;
+  };
+}

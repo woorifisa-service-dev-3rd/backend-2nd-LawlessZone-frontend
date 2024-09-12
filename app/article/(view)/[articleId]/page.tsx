@@ -1,6 +1,6 @@
 import { getArticleDetail } from '@/api/articleAPI';
 import { getComments } from '@/api/commentAPI';
-import ArticleDetail from '@/component/article/ArticleDetail';
+import ArticleDetailView from '@/component/article/ArticleDetailView';
 
 interface IParams {
   params: {
@@ -10,9 +10,9 @@ interface IParams {
 export default async function ArticleDetailByID({ params }: IParams) {
   const articleDetailData = await getArticleDetail(parseInt(params.articleId));
   if (articleDetailData?.error) {
-    console.log(articleDetailData.error.message);
+    console.log(articleDetailData.error);
   }
   const articleCommentsData = await getComments(params.articleId);
 
-  return <ArticleDetail articleDetailData={articleDetailData} articleCommentsData={articleCommentsData} />;
+  return <ArticleDetailView articleDetailData={articleDetailData} articleCommentsData={articleCommentsData} />;
 }

@@ -11,14 +11,3 @@
 .article_area .util_list button:hover {
   text-decoration: underline;
 }
-.btn_list a {
-  display: block;
-  margin: 0 auto;
-  width: 150px;
-  height: 60px;
-  line-height: 60px;
-  text-align: center;
-  font-weight: 500;
-  color: #fff;
-  background-color: #1c2024;
-}
