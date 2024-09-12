@@ -1,7 +1,7 @@
 'use server';
 
 import { cookies } from 'next/headers';
-import { instance } from './instance';
+import { instance } from '../instance';
 
 export const login = async (email: string, password: string) => {
   const response = await instance('member/login', {
@@ -11,7 +11,6 @@ export const login = async (email: string, password: string) => {
       password: password,
     }),
   });
-
 
   if (response.accessToken) {
     const cookieStore = cookies();
