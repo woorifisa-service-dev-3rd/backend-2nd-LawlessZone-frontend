@@ -1,0 +1,20 @@
+.btn_list a,
+.btn_list button {
+  display: block;
+  width: 150px;
+  height: 60px;
+  line-height: 58px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  box-sizing: border-box;
+}
+.btn_list .btn_bk {
+  color: #fff;
+  background-color: #1c2024;
+}
+.btn_list .btn_wh {
+  color: #1c2024;
+  background-color: #fff;
+  border: 1px solid #1c2024;
+}
