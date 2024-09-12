@@ -4,10 +4,18 @@ import styles from '@/css/ArticleDetail.module.css';
 import { Box, Card, Flex, Text } from '@radix-ui/themes';
 import Link from 'next/link';
 import { useState } from 'react';
+import CommentList from '../comment/CommentList';
+import { Comment } from '@/type/commentType';
 
-export default function ArticleDetail({ articleDetailData }: { articleDetailData: IArticleData }) {
+export default function ArticleDetail({
+  articleDetailData,
+  articleCommentsData,
+}: {
+  articleDetailData: IArticleData;
+  articleCommentsData: Comment[];
+}) {
   const [articleDetail, setArticleDetail] = useState(articleDetailData);
-  console.log(articleDetail);
+
   return (
     <Box>
       {/* 기사 영역 */}
@@ -34,7 +42,7 @@ export default function ArticleDetail({ articleDetailData }: { articleDetailData
           <Text as="p">{articleDetail.content}</Text>
         </Card>
       </Box>
-      {/* 댓글 영역 */}
+      <CommentList articleCommentsData={articleCommentsData} />
       <Box mt="3" className={styles.btn_list}>
         <Link href="/article">목록으로</Link>
       </Box>
