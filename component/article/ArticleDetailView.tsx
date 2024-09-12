@@ -6,10 +6,17 @@ import { Box, Card, Flex, Text } from '@radix-ui/themes';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import CommentList from '../comment/CommentList';
+import { Comment } from '@/type/commentType';
 
-export default function ArticleDetailView({ articleDetailData }: { articleDetailData: IArticleData }) {
+export default function ArticleDetailView({
+  articleDetailData,
+  articleCommentsData,
+}: {
+  articleDetailData: IArticleData;
+  articleCommentsData: Comment[];
+}) {
   const router = useRouter();
-
   const [articleDetail, setArticleDetail] = useState(articleDetailData);
 
   const onDelete = async () => {
@@ -47,7 +54,7 @@ export default function ArticleDetailView({ articleDetailData }: { articleDetail
           <Text as="p">{articleDetail.content}</Text>
         </Card>
       </Box>
-      {/* 댓글 영역 */}
+      <CommentList articleCommentsData={articleCommentsData} />
       <Flex mt="3" justify="center" className="btn_list">
         <Link href="/article" className="btn_bk">
           목록으로

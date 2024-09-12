@@ -1,11 +1,18 @@
 import { getArticleDetail } from '@/api/articleAPI';
+import { getComments } from '@/api/commentAPI';
 import ArticleDetailView from '@/component/article/ArticleDetailView';
 
-export default async function ArticleDetail({ params }: IParams) {
+interface IParams {
+  params: {
+    articleId: string;
+  };
+}
+export default async function ArticleDetailByID({ params }: IParams) {
   const articleDetailData = await getArticleDetail(parseInt(params.articleId));
   if (articleDetailData?.error) {
-    console.log(articleDetailData.error.message);
+    console.log(articleDetailData.error);
   }
+  const articleCommentsData = await getComments(params.articleId);
 
-  return <ArticleDetailView articleDetailData={articleDetailData} />;
+  return <ArticleDetailView articleDetailData={articleDetailData} articleCommentsData={articleCommentsData} />;
 }
