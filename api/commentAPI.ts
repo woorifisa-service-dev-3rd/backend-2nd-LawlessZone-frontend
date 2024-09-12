@@ -22,6 +22,16 @@ export const addComment = async (articleId: string, content: string, isAnonymous
   return response;
 };
 
+// 댓글 수정
+export const updateComment = async (articleId: string, commentId: number, content: string, isAnonymous: boolean) => {
+  const response = await instance(`articles/${articleId}/comments/update/${commentId}`, {
+    method: 'POST',
+    body: JSON.stringify({ isAnonymous, content }),
+  });
+  revalidatePath(`articles/${articleId}/comments`);
+  return response;
+};
+
 // 댓글 삭제
 export const deleteComment = async (articleId: string, commentId: number) => {
   const response = await instance(`articles/${articleId}/comments/delete/${commentId}`, {
