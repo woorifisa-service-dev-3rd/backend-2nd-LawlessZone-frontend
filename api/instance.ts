@@ -9,7 +9,7 @@ interface RequestOptions {
 }
 
 const fetchInstance = async (url: string, options: RequestOptions = {}) => {
-  const accessToken = cookies().get('access_token')?.value;
+  const accessToken = cookies().get('accessToken');
 
   const headers: RequestOptions['headers'] = {
     'Content-Type': 'application/json',
@@ -17,7 +17,8 @@ const fetchInstance = async (url: string, options: RequestOptions = {}) => {
   };
 
   if (accessToken) {
-    headers.Authorization = `Bearer ${accessToken}`;
+    headers['Cookie'] = `accessToken=${accessToken.value}`;
+    headers['credentials'] = 'include';
   }
 
   try {
