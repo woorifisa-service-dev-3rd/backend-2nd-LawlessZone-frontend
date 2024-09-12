@@ -16,7 +16,16 @@ export const getComments = async (articleId: string) => {
 export const addComment = async (articleId: string, content: string, isAnonymous: boolean) => {
   const response = await instance(`articles/${articleId}/comments`, {
     method: 'POST',
-    body: JSON.stringify({ isAnonymous, content, nickName: '테스트' }), // 나중에 닉네임 안받도록 requestDTO 수정할거임
+    body: JSON.stringify({ isAnonymous, content }),
+  });
+  revalidatePath(`articles/${articleId}/comments`);
+  return response;
+};
+
+// 댓글 삭제
+export const deleteComment = async (articleId: string, commentId: number) => {
+  const response = await instance(`articles/${articleId}/comments/delete/${commentId}`, {
+    method: 'POST',
   });
   revalidatePath(`articles/${articleId}/comments`);
   return response;
