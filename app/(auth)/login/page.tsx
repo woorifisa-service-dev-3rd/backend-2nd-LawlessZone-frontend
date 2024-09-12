@@ -1,6 +1,6 @@
 'use client';
 
-import { login } from '@/api/login';
+import { login } from '@/api/auth/login';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
