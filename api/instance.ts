@@ -27,8 +27,6 @@ const fetchInstance = async (url: string, options: RequestOptions = {}) => {
       headers,
     });
 
-    console.log(response);
-
     if (!response.ok) {
       const errorResponse = await response.json();
       return { error: errorResponse };

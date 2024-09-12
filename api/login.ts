@@ -11,22 +11,17 @@ export const login = async (email: string, password: string) => {
       password: password,
     }),
   });
-  if (response.cookie) {
+
+
+  if (response.accessToken) {
     const cookieStore = cookies();
-    const cookieParts = response.cookie.split('; ');
-    const accessToken = cookieParts[0];
 
-    const path = cookieParts.find((part: string) => part.startsWith('Path=')) || 'Path=/';
-    const maxAge = cookieParts.find((part: string) => part.startsWith('Max-Age=')) || '';
-    const expires = cookieParts.find((part: string) => part.startsWith('Expires=')) || '';
-
-    cookieStore.set('accessToken', accessToken.substring(12), {
+    cookieStore.set('accessToken', response.accessToken, {
       path: '/',
-      maxAge: maxAge.substring(8),
+      maxAge: 60 * 60 * 24 * 31,
       sameSite: 'lax',
       httpOnly: true,
     });
-
     response['statusCode'] = 200;
   }
   return response;
