@@ -1,0 +1,12 @@
+.table th,
+.table td {
+  text-align: center;
+}
+.table th.title,
+.table td.title {
+  text-align: left;
+}
+
+.table td.title a:hover {
+  text-decoration: underline;
+}

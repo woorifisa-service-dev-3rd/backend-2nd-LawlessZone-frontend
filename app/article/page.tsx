@@ -1,11 +1,11 @@
-import { getArticle } from '@/api/artucle';
+import { getArticle } from '@/api/articleAPI';
 import ArticleList from '@/component/article/ArticleList';
 
 export default async function Article() {
-  const articles = await getArticle();
-  if (articles?.error) {
-    console.log(articles.error.message);
+  const articlesData = await getArticle();
+  if (articlesData?.error) {
+    console.log(articlesData.error.message);
   }
 
-  return <ArticleList articles={articles} />;
+  return <ArticleList articlesData={articlesData} />;
 }

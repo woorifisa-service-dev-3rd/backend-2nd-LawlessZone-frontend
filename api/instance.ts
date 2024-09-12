@@ -35,8 +35,7 @@ const fetchInstance = async (url: string, options: RequestOptions = {}) => {
     }
 
     if (response.headers.get('Content-Type')?.includes('application/json')) {
-      const jsonResponse = await response.json();
-      return { ...jsonResponse, cookie: response.headers.get('Set-Cookie') };
+      return await response.json();
     } else {
       return await response.text();
     }
