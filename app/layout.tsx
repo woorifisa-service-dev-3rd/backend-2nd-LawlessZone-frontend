@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 // style
 import '@/css/reset.css';
+import '@/css/common.css';
 import '@radix-ui/themes/styles.css';
 import { Box, Container, Theme } from '@radix-ui/themes';
 import Header from '@/component/common/Header';

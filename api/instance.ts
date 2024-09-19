@@ -9,7 +9,7 @@ interface RequestOptions {
 }
 
 const fetchInstance = async (url: string, options: RequestOptions = {}) => {
-  const accessToken = cookies().get('access_token')?.value;
+  const accessToken = cookies().get('accessToken');
 
   const headers: RequestOptions['headers'] = {
     'Content-Type': 'application/json',
@@ -17,7 +17,8 @@ const fetchInstance = async (url: string, options: RequestOptions = {}) => {
   };
 
   if (accessToken) {
-    headers.Authorization = `Bearer ${accessToken}`;
+    headers['Cookie'] = `accessToken=${accessToken.value}`;
+    headers['credentials'] = 'include';
   }
 
   try {
@@ -25,15 +26,13 @@ const fetchInstance = async (url: string, options: RequestOptions = {}) => {
       ...options,
       headers,
     });
-    
     if (!response.ok) {
       const errorResponse = response.json();
       return { error: errorResponse };
     }
 
     if (response.headers.get('Content-Type')?.includes('application/json')) {
-      const jsonResponse = await response.json();
-      return { ...jsonResponse, cookie: response.headers.get('Set-Cookie') };
+      return await response.json();
     } else {
       return await response.text();
     }

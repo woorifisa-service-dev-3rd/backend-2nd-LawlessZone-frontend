@@ -1,0 +1,13 @@
+.article_area .content {
+  min-height: 150px;
+}
+.article_area .util_list a,
+.article_area .util_list button {
+  display: block;
+  font-size: 14px;
+  color: #999;
+}
+.article_area .util_list a:hover,
+.article_area .util_list button:hover {
+  text-decoration: underline;
+}
