@@ -3,24 +3,24 @@
 import { validatePayment } from "@/api/paymentAPI";
 import Script from "next/script";
 
-
 export default function Pay() {
-  
-  // useEffect(() => {
-  //   if (!window.IMP) {
-  //     alert('IMP 객체가 로드되지 않았습니다.');
-  //   } else {
-  //     window.IMP.init("imp44545746");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!window.IMP) {
+      console.error('IMP 객체가 로드되지 않았습니다.');
+    } else {
+      window.IMP.init('imp44545746');
+    }
+  }, []);
 
-  const requestPay =  () => {
-
+  const requestPay = () => {
     const IMP = window.IMP;
-    IMP.init("imp44545746");
+    if (!IMP) {
+      alert('결제 모듈이 로드되지 않았습니다.');
+      return;
+    }
+
     IMP.request_pay(
       {
-        // param
         pg: 'html5_inicis',
         pay_method: 'card',
         merchant_uid: 'ORD' + new Date().getTime(),
@@ -33,15 +33,13 @@ export default function Pay() {
         buyer_postcode: '01181',
       },
       async (rsp) => {
-        // callback
         if (rsp.success) {
           try {
             const response = await validatePayment(rsp.imp_uid,rsp.merchant_uid,rsp.paid_amount);
             if (!response.error) {
               alert('결제가 성공했습니다.');
             } else {
-              console.log(rsp.imp_uid);
-              
+              console.error(rsp.imp_uid);
               alert('결제 검증에 실패했습니다.');
             }
           } catch (error) {
@@ -56,14 +54,18 @@ export default function Pay() {
 
   return (
     <div>
-      <Script 
-        src="https://cdn.iamport.kr/js/iamport.payment-1.1.7.js" 
+      <Script
+        src="https://cdn.iamport.kr/js/iamport.payment-1.1.7.js"
         strategy="beforeInteractive"
+        onLoad={() => {
+          if (window.IMP) {
+            window.IMP.init('imp44545746');
+          } else {
+            console.error('IMP 객체가 로드되지 않았습니다.');
+          }
+        }}
       />
-      <Script 
-        src="https://code.jquery.com/jquery-1.12.4.min.js" 
-        strategy="beforeInteractive"
-      />
+      <Script src="https://code.jquery.com/jquery-1.12.4.min.js" strategy="beforeInteractive" />
       <button onClick={requestPay}>결제하기</button>
     </div>
   );
