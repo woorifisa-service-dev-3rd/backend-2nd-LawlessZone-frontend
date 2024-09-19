@@ -14,11 +14,11 @@ export default function Header() {
         <header>
           <Flex justify="center" align="center" gap="30px" asChild>
             <ul>
-              <li>
+              {/* <li>
                 <Link href="/" className={pathname == '/' ? `${styles.active}` : ''}>
                   <Text as="p">메인</Text>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/login" className={pathname.startsWith('/login') ? `${styles.active}` : ''}>
                   <Text as="p">로그인</Text>
