@@ -1,3 +1,4 @@
+import { revalidatePath } from 'next/cache';
 import { instance } from './instance';
 
 // 전체 게시물 목록 조회
@@ -17,6 +18,7 @@ export const cancelPayment = async (id: any) => {
   });
   console.log(response);
 
+  revalidatePath('/payment');
   return response;
 };
 
@@ -25,5 +27,6 @@ export const validatePayment = async (impUid: any, merchantUid: any, amount: any
     method: 'POST',
     body: JSON.stringify({ impUid, merchantUid, amount }),
   });
+  revalidatePath('/payment');
   return response;
 };

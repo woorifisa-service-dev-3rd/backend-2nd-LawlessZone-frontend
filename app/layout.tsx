@@ -12,8 +12,11 @@ import Head from 'next/head';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  title: 'LawlessZone',
+  title: '無法地帯',
   description: 'backend-2nd-LawlessZone-frontend',
+  icons: {
+    icon: '/logo.png',
+  },
 };
 
 const notoSansKr = Noto_Sans_KR({

@@ -1,6 +1,7 @@
 'use client';
 
 import { validatePayment } from '@/api/paymentAPI';
+import { Button, Flex } from '@radix-ui/themes';
 import Script from 'next/script';
 import { useEffect } from 'react';
 
@@ -54,7 +55,7 @@ export default function Pay() {
   };
 
   return (
-    <div>
+    <Flex justify="center" align="center" direction="column" width="880px">
       <Script
         src="https://cdn.iamport.kr/js/iamport.payment-1.1.7.js"
         strategy="beforeInteractive"
@@ -67,7 +68,11 @@ export default function Pay() {
         }}
       />
       <Script src="https://code.jquery.com/jquery-1.12.4.min.js" strategy="beforeInteractive" />
-      <button onClick={requestPay}>결제하기</button>
-    </div>
+      <Flex mt="3" justify="center" className="btn_list">
+        <button className="btn_bk" onClick={requestPay}>
+          결제하기
+        </button>
+      </Flex>
+    </Flex>
   );
 }

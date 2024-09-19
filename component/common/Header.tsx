@@ -21,17 +21,17 @@ export default function Header() {
               </li> */}
               <li>
                 <Link href="/login" className={pathname.startsWith('/login') ? `${styles.active}` : ''}>
-                  <Text as="p">로그인</Text>
+                  <Text as="p">ログイン</Text>
                 </Link>
               </li>
               <li>
                 <Link href="/article" className={pathname.startsWith('/article') ? `${styles.active}` : ''}>
-                  <Text as="p">게시판</Text>
+                  <Text as="p">けいじばん</Text>
                 </Link>
               </li>
               <li>
                 <Link href="/payment" className={pathname.startsWith('/payment') ? `${styles.active}` : ''}>
-                  <Text as="p">결제</Text>
+                  <Text as="p">けっさい</Text>
                 </Link>
               </li>
             </ul>
