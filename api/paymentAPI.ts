@@ -19,9 +19,11 @@ export const cancelPayment = async (id: any) => {
 
   return response;
 };
-export const validatePayment = async (uid: any) => {
-  const response = await instance(`payment/validate/${uid}`, {
-    method: 'GET',
-  });
-  return response;
+
+export const validatePayment = async (impUid:any,merchantUid:any,amount:any) => {
+    const response = await instance(`payment/validate`, {
+      method: 'POST',
+      body: JSON.stringify({ impUid, merchantUid,amount }),
+    });
+    return response;
 };

@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
-import Script from 'next/script';
+import { validatePayment } from "@/api/paymentAPI";
+import Script from "next/script";
 
 export default function Pay() {
   useEffect(() => {
@@ -35,18 +35,8 @@ export default function Pay() {
       async (rsp) => {
         if (rsp.success) {
           try {
-            const response = await fetch(`http://localhost:8080/payment/validate`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                impUid: rsp.imp_uid,
-                merchantUid: rsp.merchant_uid,
-                amount: rsp.paid_amount,
-              }),
-            });
-            if (response.ok) {
+            const response = await validatePayment(rsp.imp_uid,rsp.merchant_uid,rsp.paid_amount);
+            if (!response.error) {
               alert('결제가 성공했습니다.');
             } else {
               console.error(rsp.imp_uid);
