@@ -15,7 +15,7 @@ export default function Login() {
     e.preventDefault();
     const response = await login(inputEmail, inputPassword);
     if (response.statusCode === 200) {
-      router.push('/');
+      router.push('/article');
     } else {
       window.alert('아이디 비밀번호를 확인해주세요.');
     }
