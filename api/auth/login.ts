@@ -19,7 +19,7 @@ export const login = async (email: string, password: string) => {
       path: '/',
       maxAge: 60 * 60 * 24 * 31,
       sameSite: 'lax',
-      httpOnly: true,
+      // httpOnly: true,
     });
     response['statusCode'] = 200;
   }
