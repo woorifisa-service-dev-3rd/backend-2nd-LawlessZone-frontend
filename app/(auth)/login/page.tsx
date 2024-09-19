@@ -1,6 +1,7 @@
 'use client';
 
 import { login } from '@/api/auth/login';
+import { Box, Button, Flex, TextField } from '@radix-ui/themes';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -21,12 +22,32 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)}></input>
-        <input onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.currentTarget.value)}></input>
-        <input type="submit" value="요청 보내기"></input>
+    <Flex justify="center" align="center" width="100%" mt="15">
+      <form onSubmit={onSubmit} style={{ width: '300px' }}>
+        <Flex justify="center" align="center" direction="column" gap="1">
+          <Box width="100%">
+            <TextField.Root
+              size="3"
+              type="email"
+              placeholder="아이디"
+              value={inputEmail}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Box>
+          <Box width="100%">
+            <TextField.Root
+              size="3"
+              type="password"
+              placeholder="비밀번호"
+              value={inputPassword}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Box>
+          <Button color="gray" variant="solid" size="3" highContrast type="submit" style={{ width: '100%' }}>
+            로그인
+          </Button>
+        </Flex>
       </form>
-    </div>
+    </Flex>
   );
 }
