@@ -6,6 +6,7 @@ import styles from '@/css/ArticleList.module.css';
 import { Box, Flex, Table } from '@radix-ui/themes';
 import Link from 'next/link';
 import { deleteArticle } from '@/api/articleAPI';
+import Image from 'next/image';
 
 export default function ArticleList({ articlesData }: { articlesData: IArticleData[] }) {
   const [articles, setArticle] = useState(articlesData);
@@ -30,7 +31,12 @@ export default function ArticleList({ articlesData }: { articlesData: IArticleDa
                 <Table.Cell width="100%" className={styles.title}>
                   <Link href={`article/${article.id}`}>{article.title}</Link>
                 </Table.Cell>
-                <Table.Cell width="100px">{article.authorNickName}</Table.Cell>
+                <Table.Cell width="100px">
+                  {article.authorNickName === '박준현' && (
+                    <Image src="/crown.png" width="20" height="20" alt={''} style={{ marginRight: '2px' }} />
+                  )}
+                  {article.authorNickName}
+                </Table.Cell>
               </Table.Row>
             );
           })}
