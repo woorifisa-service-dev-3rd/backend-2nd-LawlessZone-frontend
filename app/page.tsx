@@ -14,5 +14,11 @@ export default function Home() {
     route.push('/article');
   }, [route]);
 
-  return <div>root 페이지</div>;
+  return (
+    <div>
+      <Script src="https://code.jquery.com/jquery-1.12.4.min.js" strategy="beforeInteractive" />
+      <Script src="https://cdn.iamport.kr/js/iamport.payment-1.1.7.js" strategy="lazyOnload" />
+      root 페이지
+    </div>
+  );
 }
