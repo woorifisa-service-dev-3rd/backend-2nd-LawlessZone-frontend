@@ -39,7 +39,7 @@ const Signup = () => {
           alignItems: 'center',
         }}
       >
-        <input 
+        <input
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)}
           placeholder="이메일"
         ></input>
