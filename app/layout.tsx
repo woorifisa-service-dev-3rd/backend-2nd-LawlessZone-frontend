@@ -32,6 +32,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <Script src="https://cdn.iamport.kr/js/iamport.payment-1.1.7.js" strategy="beforeInteractive" />
+      {/* jQuery 스크립트 */}
+      <Script src="https://code.jquery.com/jquery-1.12.4.min.js" strategy="beforeInteractive" />
+
       <body className={notoSansKr.variable}>
         <Theme>
           <Header />

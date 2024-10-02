@@ -40,7 +40,7 @@ export default function CommentList({ articleCommentsData }: ICommentList) {
               <Text as="p" size="3" color="gray">
                 {comment.isAnonymous ? '익명' : comment.nickName}
               </Text>
-              {(comment.nickName === '박준현' || comment.nickName === '테스트') && (
+              {comment.nickName === ('박준현' || '테스트') && (
                 <Flex gap="2" className={styles.comment_util}>
                   <Text as="p" size="2" color="gray" onClick={() => handleToggleUpdate(comment.id)}>
                     수정
