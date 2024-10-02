@@ -18,10 +18,10 @@ export default function ArticleWriteForm({
 }) {
   const router = useRouter();
 
-  const [title, setTitle] = useState(type == 'write' ? '' : articleDetailData?.title);
-  const [content, setContent] = useState(type == 'write' ? '' : articleDetailData?.content);
+  const [title, setTitle] = useState(type == 'write' ? '' : articleDetailData?.title || '');
+  const [content, setContent] = useState(type == 'write' ? '' : articleDetailData?.content || '');
 
-  const id = articleDetailData?.id;
+  const id = articleDetailData?.id || 4;
   const memberId = 4;
   const viewCount = 0;
 
