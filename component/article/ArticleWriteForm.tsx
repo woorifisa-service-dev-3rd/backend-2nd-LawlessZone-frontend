@@ -21,8 +21,7 @@ export default function ArticleWriteForm({
   const [title, setTitle] = useState(type == 'write' ? '' : articleDetailData?.title || '');
   const [content, setContent] = useState(type == 'write' ? '' : articleDetailData?.content || '');
 
-  const id = articleDetailData?.id || 4;
-  const memberId = 4;
+  const id = articleDetailData?.id || 0;
   const viewCount = 0;
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -41,7 +40,7 @@ export default function ArticleWriteForm({
     let response;
 
     if (type == 'write') {
-      response = await postArticle({ memberId, title, content, viewCount });
+      response = await postArticle({ title, content, viewCount });
     } else {
       response = await updateArticle({ id, title, content });
     }
