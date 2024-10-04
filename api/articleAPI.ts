@@ -21,9 +21,9 @@ export const getArticleDetail = async (id: number) => {
 };
 
 // 게시물 등록
-export const postArticle = async ({ memberId, title, content, viewCount }: IArticlePost) => {
+export const postArticle = async ({ title, content, viewCount }: IArticlePost) => {
   const response = await instance('articles', {
-    body: JSON.stringify({ memberId, title, content, viewCount }),
+    body: JSON.stringify({ title, content, viewCount }),
     method: 'POST',
   });
   revalidatePath('/article');
