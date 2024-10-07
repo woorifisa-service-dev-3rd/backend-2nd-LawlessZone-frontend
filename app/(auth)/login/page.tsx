@@ -1,8 +1,10 @@
 'use client';
 
 import { login } from '@/api/auth/login';
+import { signup } from '@/api/auth/signup';
 import { Box, Button, Flex, TextField } from '@radix-ui/themes';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -46,6 +48,9 @@ export default function Login() {
           <Button color="gray" variant="solid" size="3" highContrast type="submit" style={{ width: '100%' }}>
             로그인
           </Button>
+          <Link href={'/signup'} style={{ width: '100%' }}>
+            회원가입 →
+          </Link>
         </Flex>
       </form>
     </Flex>

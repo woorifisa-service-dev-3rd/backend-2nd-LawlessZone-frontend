@@ -6,7 +6,6 @@ interface IArticleData {
 }
 
 interface IArticlePost {
-  memberId: number;
   title: string;
   content: string;
   viewCount: number;
